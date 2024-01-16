@@ -1246,9 +1246,9 @@ class Functions {
             .setRestMethod(HttpMethod.POST)
             .build();
 
-    private static final Function GetDevices =
+    private static final Function GetPreDevices =
         new RegularFunction.Builder()
-            .setFunctionId(FunctionId.GET_DEVICES)
+            .setFunctionId(FunctionId.GET_PRE_DEVICES)
             .setBaseName("GetDevices")
             .setRestMethod(HttpMethod.GET)
             .setPartialPath("predevice")
@@ -1259,23 +1259,26 @@ class Functions {
                               .setDataDescriptor(new EnumeratorDataDescriptor(EnumeratorId.QUERY_DEVICE_TYPE))
                               .setQueryTag("dev_type")
                               .setIsOptional(true)
-                              .addDescription("Limits the device type of the devices to be queried")
+                              .addDescription("Limits the device type of the devices to be queried.")
+                              .addDescription("If not specified, all device types will be returned.")
                               .build())
             .addParameter(new QueryParameter.Builder()
                               .setBaseName("GroupId")
                               .setDataDescriptor(new IntrinsicDataDescriptor(IntrinsicTypeId.INT32))
                               .setQueryTag("grp_id")
-                              .setIsOptional(true)
-                              .addDescription("Only return devices associated with the indicated group")
+                              .setIsOptional(false)
+                              .addDescription("Indicates the group for which devices are queried.")
+                              .addDescription("If MachineId is specified, only those devices which are in the")
+                              .addDescription("group free pool will be returned.")
                               .build())
             .addParameter(new QueryParameter.Builder()
                               .setBaseName("MachineId")
                               .setDataDescriptor(new IntrinsicDataDescriptor(IntrinsicTypeId.INT32))
                               .setQueryTag("mach_id")
                               .setIsOptional(true)
-                              .addDescription("Only return devices associated with the indicated machine")
+                              .addDescription("Only return devices associated with the indicated machine.")
                               .build())
-            .addDescription("Returns information regarding all devices (or a subset thereof) for the system")
+            .addDescription("Returns information regarding devices which are attached to a particular group.")
             .build();
 
     private static final Function GetGroupComputeDeviceRelator =
@@ -2819,7 +2822,7 @@ class Functions {
         CONTENT.put(FunctionId.ADD_MEMORY_DEVICE_TO_GROUP, AddMemoryDeviceToGroup);
         CONTENT.put(FunctionId.ADD_NETWORK_DEVICE_TO_GROUP, AddNetworkDeviceToGroup);
         CONTENT.put(FunctionId.ADD_STORAGE_DEVICE_TO_GROUP, AddStorageDeviceToGroup);
-        CONTENT.put(FunctionId.GET_DEVICES, GetDevices);
+        CONTENT.put(FunctionId.GET_PRE_DEVICES, GetPreDevices);
         CONTENT.put(FunctionId.GET_GROUP_COMPUTE_DEVICE_RELATOR, GetGroupComputeDeviceRelator);
         CONTENT.put(FunctionId.GET_GROUP_FPGA_DEVICE_RELATOR, GetGroupFPGADeviceRelator);
         CONTENT.put(FunctionId.GET_GROUP_GPU_DEVICE_RELATOR, GetGroupGPUDeviceRelator);

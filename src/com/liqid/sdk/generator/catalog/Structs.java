@@ -141,7 +141,7 @@ class Structs {
             .addMember(new StructFunctionMember.Builder().setFunctionId(FunctionId.GET_COMPUTE_DEVICE_INFO_BY_NAME).build())
             .addMember(new StructFunctionMember.Builder().setFunctionId(FunctionId.GET_CURRENT_FABRIC_ID).build())
             .addMember(new StructFunctionMember.Builder().setFunctionId(FunctionId.GET_DEFAULT_COORDINATES).build())
-            .addMember(new StructFunctionMember.Builder().setFunctionId(FunctionId.GET_DEVICES).build())
+            .addMember(new StructFunctionMember.Builder().setFunctionId(FunctionId.GET_PRE_DEVICES).build())
             .addMember(new StructFunctionMember.Builder().setFunctionId(FunctionId.GET_DEVICE_ATTRIBUTES).build())
             .addMember(new StructFunctionMember.Builder().setFunctionId(FunctionId.GET_DEVICE_COUNTERS).build())
             .addMember(new StructFunctionMember.Builder().setFunctionId(FunctionId.GET_DEVICE_STATUS).build())

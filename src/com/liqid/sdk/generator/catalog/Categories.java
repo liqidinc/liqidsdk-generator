@@ -150,7 +150,7 @@ class Categories {
             .addFunction(FunctionId.ADD_MEMORY_DEVICE_TO_GROUP)
             .addFunction(FunctionId.ADD_NETWORK_DEVICE_TO_GROUP)
             .addFunction(FunctionId.ADD_STORAGE_DEVICE_TO_GROUP)
-            .addFunction(FunctionId.GET_DEVICES)
+            .addFunction(FunctionId.GET_PRE_DEVICES)
             .addFunction(FunctionId.GET_GROUP_COMPUTE_DEVICE_RELATOR)
             .addFunction(FunctionId.GET_GROUP_FPGA_DEVICE_RELATOR)
             .addFunction(FunctionId.GET_GROUP_GPU_DEVICE_RELATOR)

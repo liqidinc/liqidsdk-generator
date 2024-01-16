@@ -1363,12 +1363,14 @@ public class LiqidClient extends LiqidClientBase {
     /**
      * getDevices()
      * Category: GroupDeviceRelator
-     * Returns information regarding all devices (or a subset thereof) for the system
-     * @param queryDeviceType: Limits the device type of the devices to be queried
+     * Returns information regarding devices which are attached to a particular group.
+     * @param queryDeviceType: Limits the device type of the devices to be queried.
+                               If not specified, all device types will be returned.
                                This parameter is optional, and should be set to null if it is to remain unspecified.
-     * @param groupId: Only return devices associated with the indicated group
-                       This parameter is optional, and should be set to null if it is to remain unspecified.
-     * @param machineId: Only return devices associated with the indicated machine
+     * @param groupId: Indicates the group for which devices are queried.
+                       If MachineId is specified, only those devices which are in the
+                       group free pool will be returned.
+     * @param machineId: Only return devices associated with the indicated machine.
                          This parameter is optional, and should be set to null if it is to remain unspecified.
      * @return An array of PreDevice entities describing the various devices in the configuration
      * @throws LiqidException if anything goes wrong
@@ -1378,6 +1380,7 @@ public class LiqidClient extends LiqidClientBase {
                                             Integer machineId) throws LiqidException {
         var fn = "getDevices";
         _logger.trace("Entering %s queryDeviceType:%s groupId:%s machineId:%s", fn, queryDeviceType, groupId, machineId);
+        checkParameterNotNull(groupId, "groupId", "getDevices");
 
         try {
             var path = "predevice";
@@ -1385,9 +1388,7 @@ public class LiqidClient extends LiqidClientBase {
             if (queryDeviceType != null) {
                 qpList.add("dev_type=" + queryDeviceType.toString());
             }
-            if (groupId != null) {
-                qpList.add("grp_id=" + groupId.toString());
-            }
+            qpList.add("grp_id=" + groupId.toString());
             if (machineId != null) {
                 qpList.add("mach_id=" + machineId.toString());
             }

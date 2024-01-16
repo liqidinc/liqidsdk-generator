@@ -360,13 +360,16 @@ func (client *LiqidClient) AddStorageDeviceToGroup(deviceId int32, groupId int32
 	return result, nil
 }
 
-// GetDevices Returns information regarding all devices (or a subset thereof) for the system
+// GetDevices Returns information regarding devices which are attached to a particular group.
 //
-// Param queryDeviceType: Limits the device type of the devices to be queried
-// Param groupId: Only return devices associated with the indicated group
-// Param machineId: Only return devices associated with the indicated machine
+// Param queryDeviceType: Limits the device type of the devices to be queried.
+//                        If not specified, all device types will be returned.
+// Param groupId: Indicates the group for which devices are queried.
+//                If MachineId is specified, only those devices which are in the
+//                group free pool will be returned.
+// Param machineId: Only return devices associated with the indicated machine.
 // Returns: An array of PreDevice entities describing the various devices in the configuration
-func (client *LiqidClient) GetDevices(queryDeviceType *DeviceQueryType, groupId *int32, machineId *int32) ([]PreDevice, error) {
+func (client *LiqidClient) GetDevices(queryDeviceType *DeviceQueryType, groupId int32, machineId *int32) ([]PreDevice, error) {
 	var fn = "GetDevices"
 	client.traceLogger.Printf(LogFmtEnter3, fn, queryDeviceType, groupId, machineId)
 
@@ -378,9 +381,7 @@ func (client *LiqidClient) GetDevices(queryDeviceType *DeviceQueryType, groupId 
 	if queryDeviceType != nil {
 		queryParams["dev_type"] = fmt.Sprintf("%v", *queryDeviceType)
 	}
-	if groupId != nil {
-		queryParams["grp_id"] = fmt.Sprintf("%v", *groupId)
-	}
+	queryParams["grp_id"] = fmt.Sprintf("%v", groupId)
 	if machineId != nil {
 		queryParams["mach_id"] = fmt.Sprintf("%v", *machineId)
 	}

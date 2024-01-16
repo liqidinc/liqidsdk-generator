@@ -1190,17 +1190,20 @@ class LiqidClient(base_client.LiqidClientBase, ABC):
 
     def get_devices(self, query_device_type, group_id, machine_id) -> list:
         """
-        Returns information regarding all devices (or a subset thereof) for the system
+        Returns information regarding devices which are attached to a particular group.
         query_device_type: str  (optional - can be None)
-            Limits the device type of the devices to be queried
-        group_id: int  (optional - can be None)
-            Only return devices associated with the indicated group
+            Limits the device type of the devices to be queried.
+            If not specified, all device types will be returned.
+        group_id: int 
+            Indicates the group for which devices are queried.
+            If MachineId is specified, only those devices which are in the
+            group free pool will be returned.
         machine_id: int  (optional - can be None)
-            Only return devices associated with the indicated machine
+            Only return devices associated with the indicated machine.
         """
         self.logger.debug('entering get_devices(%s, %s, %s)', str(query_device_type), str(group_id), str(machine_id))
         self.check_parameter_type('query_device_type', query_device_type, 'str', True)
-        self.check_parameter_type('group_id', group_id, 'int', True)
+        self.check_parameter_type('group_id', group_id, 'int', False)
         self.check_parameter_type('machine_id', machine_id, 'int', True)
 
         try:
@@ -1208,8 +1211,7 @@ class LiqidClient(base_client.LiqidClientBase, ABC):
             param_list = []
             if query_device_type is not None:
                 param_list.append('dev_type=' + str(query_device_type))
-            if group_id is not None:
-                param_list.append('grp_id=' + str(group_id))
+            param_list.append('grp_id=' + str(group_id))
             if machine_id is not None:
                 param_list.append('mach_id=' + str(machine_id))
             path += '?' + '&'.join(param_list)
