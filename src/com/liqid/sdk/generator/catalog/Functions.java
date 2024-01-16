@@ -2124,7 +2124,7 @@ class Functions {
             .addGetterLink(FunctionId.GET_MACHINE, "Machine")
             .setPartialPath("relate/compute")
             .setRestMethod(HttpMethod.DELETE)
-            .setResultDataDescriptor(new StructDataDescriptor(StructId.GROUP_COMPUTE_DEVICE_RELATOR))
+            .setResultDataDescriptor(new StructDataDescriptor(StructId.MACHINE_COMPUTE_DEVICE_RELATOR))
             .addResultDescription("A description of the relation being removed")
             .build();
 
@@ -2176,7 +2176,7 @@ class Functions {
             .addGetterLink(FunctionId.GET_MACHINE, "Machine")
             .setPartialPath("relate/fpga")
             .setRestMethod(HttpMethod.DELETE)
-            .setResultDataDescriptor(new StructDataDescriptor(StructId.GROUP_FPGA_DEVICE_RELATOR))
+            .setResultDataDescriptor(new StructDataDescriptor(StructId.MACHINE_FPGA_DEVICE_RELATOR))
             .addResultDescription("A description of the relation being removed")
             .build();
 
@@ -2206,7 +2206,7 @@ class Functions {
             .addGetterLink(FunctionId.GET_MACHINE, "Machine")
             .setPartialPath("relate/gpu")
             .setRestMethod(HttpMethod.DELETE)
-            .setResultDataDescriptor(new StructDataDescriptor(StructId.GROUP_GPU_DEVICE_RELATOR))
+            .setResultDataDescriptor(new StructDataDescriptor(StructId.MACHINE_GPU_DEVICE_RELATOR))
             .addResultDescription("A description of the relation being removed")
             .build();
 
@@ -2236,7 +2236,7 @@ class Functions {
             .addGetterLink(FunctionId.GET_MACHINE, "Machine")
             .setPartialPath("relate/memory")
             .setRestMethod(HttpMethod.DELETE)
-            .setResultDataDescriptor(new StructDataDescriptor(StructId.GROUP_MEMORY_DEVICE_RELATOR))
+            .setResultDataDescriptor(new StructDataDescriptor(StructId.MACHINE_MEMORY_DEVICE_RELATOR))
             .addResultDescription("A description of the relation being removed")
             .build();
 
@@ -2266,7 +2266,7 @@ class Functions {
             .addGetterLink(FunctionId.GET_MACHINE, "Machine")
             .setPartialPath("relate/network")
             .setRestMethod(HttpMethod.DELETE)
-            .setResultDataDescriptor(new StructDataDescriptor(StructId.GROUP_NETWORK_DEVICE_RELATOR))
+            .setResultDataDescriptor(new StructDataDescriptor(StructId.MACHINE_NETWORK_DEVICE_RELATOR))
             .addResultDescription("A description of the relation being removed")
             .build();
 
@@ -2296,7 +2296,7 @@ class Functions {
             .addGetterLink(FunctionId.GET_MACHINE, "Machine")
             .setPartialPath("relate/storage")
             .setRestMethod(HttpMethod.DELETE)
-            .setResultDataDescriptor(new StructDataDescriptor(StructId.GROUP_STORAGE_DEVICE_RELATOR))
+            .setResultDataDescriptor(new StructDataDescriptor(StructId.MACHINE_STORAGE_DEVICE_RELATOR))
             .addResultDescription("A description of the relation being removed")
             .build();
 

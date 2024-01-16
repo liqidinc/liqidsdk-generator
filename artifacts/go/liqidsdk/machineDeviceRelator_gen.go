@@ -372,7 +372,7 @@ func (client *LiqidClient) AddStorageDeviceToMachine(deviceId int32, groupId int
 // Param groupId: Unique identifier of the group to which the containing machine belongs
 // Param machineId: Unique identifier of the machine from which the device is to be removed
 // Returns: A description of the relation being removed
-func (client *LiqidClient) RemoveComputeDeviceFromMachine(deviceId int32, groupId int32, machineId int32) (*GroupComputeDeviceRelator, error) {
+func (client *LiqidClient) RemoveComputeDeviceFromMachine(deviceId int32, groupId int32, machineId int32) (*MachineComputeDeviceRelator, error) {
 	var fn = "RemoveComputeDeviceFromMachine"
 	client.traceLogger.Printf(LogFmtEnter3, fn, deviceId, groupId, machineId)
 	var composite = MachineComputeDeviceRelator{}
@@ -400,7 +400,7 @@ func (client *LiqidClient) RemoveComputeDeviceFromMachine(deviceId int32, groupI
 		return nil, cliErr
 	}
 
-	var respWrapper GroupComputeDeviceRelatorWrapper
+	var respWrapper MachineComputeDeviceRelatorWrapper
 	jsonErr := cliReq.GetJSONResponse(&respWrapper)
 	if jsonErr != nil {
 		client.traceLogger.Printf(LogFmtReturn2, fn, nil, jsonErr)
@@ -430,7 +430,7 @@ func (client *LiqidClient) RemoveComputeDeviceFromMachine(deviceId int32, groupI
 // Param groupId: Unique identifier of the group to which the containing machine belongs
 // Param machineId: Unique identifier of the machine from which the device is to be removed
 // Returns: A description of the relation being removed
-func (client *LiqidClient) RemoveFPGADeviceFromMachine(deviceId int32, groupId int32, machineId int32) (*GroupFPGADeviceRelator, error) {
+func (client *LiqidClient) RemoveFPGADeviceFromMachine(deviceId int32, groupId int32, machineId int32) (*MachineFPGADeviceRelator, error) {
 	var fn = "RemoveFPGADeviceFromMachine"
 	client.traceLogger.Printf(LogFmtEnter3, fn, deviceId, groupId, machineId)
 	var composite = MachineFPGADeviceRelator{}
@@ -458,7 +458,7 @@ func (client *LiqidClient) RemoveFPGADeviceFromMachine(deviceId int32, groupId i
 		return nil, cliErr
 	}
 
-	var respWrapper GroupFPGADeviceRelatorWrapper
+	var respWrapper MachineFPGADeviceRelatorWrapper
 	jsonErr := cliReq.GetJSONResponse(&respWrapper)
 	if jsonErr != nil {
 		client.traceLogger.Printf(LogFmtReturn2, fn, nil, jsonErr)
@@ -488,7 +488,7 @@ func (client *LiqidClient) RemoveFPGADeviceFromMachine(deviceId int32, groupId i
 // Param groupId: Unique identifier of the group to which the containing machine belongs
 // Param machineId: Unique identifier of the machine from which the device is to be removed
 // Returns: A description of the relation being removed
-func (client *LiqidClient) RemoveGPUDeviceFromMachine(deviceId int32, groupId int32, machineId int32) (*GroupGPUDeviceRelator, error) {
+func (client *LiqidClient) RemoveGPUDeviceFromMachine(deviceId int32, groupId int32, machineId int32) (*MachineGPUDeviceRelator, error) {
 	var fn = "RemoveGPUDeviceFromMachine"
 	client.traceLogger.Printf(LogFmtEnter3, fn, deviceId, groupId, machineId)
 	var composite = MachineGPUDeviceRelator{}
@@ -516,7 +516,7 @@ func (client *LiqidClient) RemoveGPUDeviceFromMachine(deviceId int32, groupId in
 		return nil, cliErr
 	}
 
-	var respWrapper GroupGPUDeviceRelatorWrapper
+	var respWrapper MachineGPUDeviceRelatorWrapper
 	jsonErr := cliReq.GetJSONResponse(&respWrapper)
 	if jsonErr != nil {
 		client.traceLogger.Printf(LogFmtReturn2, fn, nil, jsonErr)
@@ -546,7 +546,7 @@ func (client *LiqidClient) RemoveGPUDeviceFromMachine(deviceId int32, groupId in
 // Param groupId: Unique identifier of the group to which the containing machine belongs
 // Param machineId: Unique identifier of the machine from which the device is to be removed
 // Returns: A description of the relation being removed
-func (client *LiqidClient) RemoveMemoryDeviceFromMachine(deviceId int32, groupId int32, machineId int32) (*GroupMemoryDeviceRelator, error) {
+func (client *LiqidClient) RemoveMemoryDeviceFromMachine(deviceId int32, groupId int32, machineId int32) (*MachineMemoryDeviceRelator, error) {
 	var fn = "RemoveMemoryDeviceFromMachine"
 	client.traceLogger.Printf(LogFmtEnter3, fn, deviceId, groupId, machineId)
 	var composite = MachineMemoryDeviceRelator{}
@@ -574,7 +574,7 @@ func (client *LiqidClient) RemoveMemoryDeviceFromMachine(deviceId int32, groupId
 		return nil, cliErr
 	}
 
-	var respWrapper GroupMemoryDeviceRelatorWrapper
+	var respWrapper MachineMemoryDeviceRelatorWrapper
 	jsonErr := cliReq.GetJSONResponse(&respWrapper)
 	if jsonErr != nil {
 		client.traceLogger.Printf(LogFmtReturn2, fn, nil, jsonErr)
@@ -604,7 +604,7 @@ func (client *LiqidClient) RemoveMemoryDeviceFromMachine(deviceId int32, groupId
 // Param groupId: Unique identifier of the group to which the containing machine belongs
 // Param machineId: Unique identifier of the machine from which the device is to be removed
 // Returns: A description of the relation being removed
-func (client *LiqidClient) RemoveNetworkDeviceFromMachine(deviceId int32, groupId int32, machineId int32) (*GroupNetworkDeviceRelator, error) {
+func (client *LiqidClient) RemoveNetworkDeviceFromMachine(deviceId int32, groupId int32, machineId int32) (*MachineNetworkDeviceRelator, error) {
 	var fn = "RemoveNetworkDeviceFromMachine"
 	client.traceLogger.Printf(LogFmtEnter3, fn, deviceId, groupId, machineId)
 	var composite = MachineNetworkDeviceRelator{}
@@ -632,7 +632,7 @@ func (client *LiqidClient) RemoveNetworkDeviceFromMachine(deviceId int32, groupI
 		return nil, cliErr
 	}
 
-	var respWrapper GroupNetworkDeviceRelatorWrapper
+	var respWrapper MachineNetworkDeviceRelatorWrapper
 	jsonErr := cliReq.GetJSONResponse(&respWrapper)
 	if jsonErr != nil {
 		client.traceLogger.Printf(LogFmtReturn2, fn, nil, jsonErr)
@@ -662,7 +662,7 @@ func (client *LiqidClient) RemoveNetworkDeviceFromMachine(deviceId int32, groupI
 // Param groupId: Unique identifier of the group to which the containing machine belongs
 // Param machineId: Unique identifier of the machine from which the device is to be removed
 // Returns: A description of the relation being removed
-func (client *LiqidClient) RemoveStorageDeviceFromMachine(deviceId int32, groupId int32, machineId int32) (*GroupStorageDeviceRelator, error) {
+func (client *LiqidClient) RemoveStorageDeviceFromMachine(deviceId int32, groupId int32, machineId int32) (*MachineStorageDeviceRelator, error) {
 	var fn = "RemoveStorageDeviceFromMachine"
 	client.traceLogger.Printf(LogFmtEnter3, fn, deviceId, groupId, machineId)
 	var composite = MachineStorageDeviceRelator{}
@@ -690,7 +690,7 @@ func (client *LiqidClient) RemoveStorageDeviceFromMachine(deviceId int32, groupI
 		return nil, cliErr
 	}
 
-	var respWrapper GroupStorageDeviceRelatorWrapper
+	var respWrapper MachineStorageDeviceRelatorWrapper
 	jsonErr := cliReq.GetJSONResponse(&respWrapper)
 	if jsonErr != nil {
 		client.traceLogger.Printf(LogFmtReturn2, fn, nil, jsonErr)

@@ -2965,7 +2965,7 @@ class LiqidClient(base_client.LiqidClientBase, ABC):
             self.logger.debug('remove_compute_device_from_group raising ' + str(ex))
             raise exceptions.LiqidError('remove_compute_device_from_group caught ' + str(ex))
 
-    def remove_compute_device_from_machine(self, device_id, group_id, machine_id) -> GroupComputeDeviceRelator:
+    def remove_compute_device_from_machine(self, device_id, group_id, machine_id) -> MachineComputeDeviceRelator:
         """
         Detaches a particular device from a machine, returning it to the group free pool
         device_id: int 
@@ -2994,7 +2994,7 @@ class LiqidClient(base_client.LiqidClientBase, ABC):
             wrapper = json.loads(resp_body)
             super().check_wrapper(wrapper, False)
             data = wrapper['response']['data']
-            result = GroupComputeDeviceRelator().from_dictionary(data[0])
+            result = MachineComputeDeviceRelator().from_dictionary(data[0])
             self.logger.debug('remove_compute_device_from_machine returning %s', str(result))
             return result
         except exceptions.LiqidError as ex:
@@ -3040,7 +3040,7 @@ class LiqidClient(base_client.LiqidClientBase, ABC):
             self.logger.debug('remove_fpga_device_from_group raising ' + str(ex))
             raise exceptions.LiqidError('remove_fpga_device_from_group caught ' + str(ex))
 
-    def remove_fpga_device_from_machine(self, device_id, group_id, machine_id) -> GroupFPGADeviceRelator:
+    def remove_fpga_device_from_machine(self, device_id, group_id, machine_id) -> MachineFPGADeviceRelator:
         """
         Detaches a particular device from a machine, returning it to the group free pool
         device_id: int 
@@ -3069,7 +3069,7 @@ class LiqidClient(base_client.LiqidClientBase, ABC):
             wrapper = json.loads(resp_body)
             super().check_wrapper(wrapper, False)
             data = wrapper['response']['data']
-            result = GroupFPGADeviceRelator().from_dictionary(data[0])
+            result = MachineFPGADeviceRelator().from_dictionary(data[0])
             self.logger.debug('remove_fpga_device_from_machine returning %s', str(result))
             return result
         except exceptions.LiqidError as ex:
@@ -3115,7 +3115,7 @@ class LiqidClient(base_client.LiqidClientBase, ABC):
             self.logger.debug('remove_gpu_device_from_group raising ' + str(ex))
             raise exceptions.LiqidError('remove_gpu_device_from_group caught ' + str(ex))
 
-    def remove_gpu_device_from_machine(self, device_id, group_id, machine_id) -> GroupGPUDeviceRelator:
+    def remove_gpu_device_from_machine(self, device_id, group_id, machine_id) -> MachineGPUDeviceRelator:
         """
         Detaches a particular device from a machine, returning it to the group free pool
         device_id: int 
@@ -3144,7 +3144,7 @@ class LiqidClient(base_client.LiqidClientBase, ABC):
             wrapper = json.loads(resp_body)
             super().check_wrapper(wrapper, False)
             data = wrapper['response']['data']
-            result = GroupGPUDeviceRelator().from_dictionary(data[0])
+            result = MachineGPUDeviceRelator().from_dictionary(data[0])
             self.logger.debug('remove_gpu_device_from_machine returning %s', str(result))
             return result
         except exceptions.LiqidError as ex:
@@ -3190,7 +3190,7 @@ class LiqidClient(base_client.LiqidClientBase, ABC):
             self.logger.debug('remove_memory_device_from_group raising ' + str(ex))
             raise exceptions.LiqidError('remove_memory_device_from_group caught ' + str(ex))
 
-    def remove_memory_device_from_machine(self, device_id, group_id, machine_id) -> GroupMemoryDeviceRelator:
+    def remove_memory_device_from_machine(self, device_id, group_id, machine_id) -> MachineMemoryDeviceRelator:
         """
         Detaches a particular device from a machine, returning it to the group free pool
         device_id: int 
@@ -3219,7 +3219,7 @@ class LiqidClient(base_client.LiqidClientBase, ABC):
             wrapper = json.loads(resp_body)
             super().check_wrapper(wrapper, False)
             data = wrapper['response']['data']
-            result = GroupMemoryDeviceRelator().from_dictionary(data[0])
+            result = MachineMemoryDeviceRelator().from_dictionary(data[0])
             self.logger.debug('remove_memory_device_from_machine returning %s', str(result))
             return result
         except exceptions.LiqidError as ex:
@@ -3265,7 +3265,7 @@ class LiqidClient(base_client.LiqidClientBase, ABC):
             self.logger.debug('remove_network_device_from_group raising ' + str(ex))
             raise exceptions.LiqidError('remove_network_device_from_group caught ' + str(ex))
 
-    def remove_network_device_from_machine(self, device_id, group_id, machine_id) -> GroupNetworkDeviceRelator:
+    def remove_network_device_from_machine(self, device_id, group_id, machine_id) -> MachineNetworkDeviceRelator:
         """
         Detaches a particular device from a machine, returning it to the group free pool
         device_id: int 
@@ -3294,7 +3294,7 @@ class LiqidClient(base_client.LiqidClientBase, ABC):
             wrapper = json.loads(resp_body)
             super().check_wrapper(wrapper, False)
             data = wrapper['response']['data']
-            result = GroupNetworkDeviceRelator().from_dictionary(data[0])
+            result = MachineNetworkDeviceRelator().from_dictionary(data[0])
             self.logger.debug('remove_network_device_from_machine returning %s', str(result))
             return result
         except exceptions.LiqidError as ex:
@@ -3340,7 +3340,7 @@ class LiqidClient(base_client.LiqidClientBase, ABC):
             self.logger.debug('remove_storage_device_from_group raising ' + str(ex))
             raise exceptions.LiqidError('remove_storage_device_from_group caught ' + str(ex))
 
-    def remove_storage_device_from_machine(self, device_id, group_id, machine_id) -> GroupStorageDeviceRelator:
+    def remove_storage_device_from_machine(self, device_id, group_id, machine_id) -> MachineStorageDeviceRelator:
         """
         Detaches a particular device from a machine, returning it to the group free pool
         device_id: int 
@@ -3369,7 +3369,7 @@ class LiqidClient(base_client.LiqidClientBase, ABC):
             wrapper = json.loads(resp_body)
             super().check_wrapper(wrapper, False)
             data = wrapper['response']['data']
-            result = GroupStorageDeviceRelator().from_dictionary(data[0])
+            result = MachineStorageDeviceRelator().from_dictionary(data[0])
             self.logger.debug('remove_storage_device_from_machine returning %s', str(result))
             return result
         except exceptions.LiqidError as ex:
