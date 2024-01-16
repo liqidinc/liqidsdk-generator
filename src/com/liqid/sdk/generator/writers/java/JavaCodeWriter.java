@@ -33,7 +33,9 @@ import java.util.stream.Collectors;
 
 public class JavaCodeWriter extends CodeWriter {
 
-    private static final String JAVA_CODE_BASE_DIRECTORY = "../java/liqidsdk/generated/com/liqid/sdk";
+    private static final String JAVA_CODE_BASE_DIRECTORY =
+        ARTIFACTS_DIRECTORY + "/java/src/com/liqid/sdk";
+
     private static final String[] CLASS_IMPORTS = {
         "com.fasterxml.jackson.annotation.JsonAutoDetect",
         "com.fasterxml.jackson.annotation.JsonIgnoreProperties",

@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
 
 public class PythonDocWriter extends DocWriter {
 
-    private static final String PYTHON_DOCS_BASE_DIRECTORY = "../python/liqidsdk/docs/";
+    private static final String PYTHON_DOCS_BASE_DIRECTORY = ARTIFACTS_DIRECTORY + "/python/docs/";
 
     private static final String CATEGORY_COLOR = "fuchsia";
     private static final String CLASS_NAME_COLOR = "orangered";

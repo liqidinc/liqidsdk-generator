@@ -33,7 +33,8 @@ import java.util.stream.Collectors;
 
 public class PythonCodeWriter extends CodeWriter {
 
-    private static final String PYTHON_CODE_BASE_DIRECTORY = "../python/liqidsdk/liqidsdk";
+    private static final String PYTHON_CODE_BASE_DIRECTORY = ARTIFACTS_DIRECTORY + "/python/liqidsdk";
+
     private static final Map<HttpMethod, String> REST_METHOD_MAP = new HashMap<>();
     static {
         REST_METHOD_MAP.put(HttpMethod.DELETE, "base_client.HttpDelete");

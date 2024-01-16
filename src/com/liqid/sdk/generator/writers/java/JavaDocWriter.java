@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 
 public class JavaDocWriter extends DocWriter {
 
-    private static final String JAVA_DOCS_BASE_DIRECTORY = "../java/liqidsdk/docs/";
+    private static final String JAVA_DOCS_BASE_DIRECTORY = ARTIFACTS_DIRECTORY + "/java/docs/";
 
     private static final String CATEGORY_COLOR = "fuchsia";
     private static final String CLASS_NAME_COLOR = "orangered";

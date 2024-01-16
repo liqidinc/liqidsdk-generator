@@ -12,7 +12,6 @@ import com.liqid.sdk.generator.discreteDataModels.*;
 import com.liqid.sdk.generator.liqidEntityModels.Category;
 import com.liqid.sdk.generator.liqidEntityModels.Description;
 import com.liqid.sdk.generator.liqidEntityModels.LiqidEntity;
-import com.liqid.sdk.generator.liqidEntityModels.StructId;
 import com.liqid.sdk.generator.liqidEntityModels.functions.Function;
 import com.liqid.sdk.generator.liqidEntityModels.structs.Struct;
 import com.liqid.sdk.generator.liqidEntityModels.types.Enumerator;
@@ -27,7 +26,7 @@ import java.util.stream.Collectors;
 
 public class GoDocWriter extends DocWriter {
 
-    private static final String GO_DOCS_BASE_DIRECTORY = "../go/liqidsdk/docs/";
+    private static final String GO_DOCS_BASE_DIRECTORY = ARTIFACTS_DIRECTORY + "/go/docs/";
 
     private static final String CATEGORY_COLOR = "fuchsia";
     private static final String CLASS_NAME_COLOR = "orangered";
@@ -424,7 +423,7 @@ public class GoDocWriter extends DocWriter {
 
     private void writeStructMembers(BufferedWriter writer, Struct struct) throws IOException {
         var members = struct.getDataMembersFor(LanguageId.GO);
-        if (members.size() > 0) {
+        if (!members.isEmpty()) {
             writer.write("<h3>Members:</h3>\n");
             writer.write(embedInSpan("All members are private, and should be accessed via the indicated get and set methods.<br>\n",
                                      LEFT_MARGIN_EM, null, null));
@@ -469,7 +468,7 @@ public class GoDocWriter extends DocWriter {
         while (thisStruct != null) {
             //  Do methods local to this struct
             var methods = thisStruct.getFunctionMembersFor(LanguageId.GO);
-            if (methods.size() > 0) {
+            if (!methods.isEmpty()) {
                 if (!methStrSent) {
                     writer.write(methStr);
                     methStrSent = true;
@@ -490,7 +489,6 @@ public class GoDocWriter extends DocWriter {
     private void writeStructMethod(BufferedWriter writer,
                                    Struct containingStruct,
                                    Function function) throws IOException {
-        var exceptionLink = getLinkTo(Catalog.getStruct(StructId.LIQID_EXCEPTION));
 
         //  header
         writer.write(String.format("<h4 id=%s style=\"margin-left:%dem;\">%s</h4>\n",
@@ -541,11 +539,6 @@ public class GoDocWriter extends DocWriter {
         if (function.hasResult()) {
             var resDesc = function.getResultDataDescriptor();
             sb.append("(");
-//            if (resDesc.isArray()) {
-//                sb.append("[]");
-//            } else if (GoCommon.weShouldReturnAPointerFor(resDesc)) {
-//                sb.append("*");
-//            }
             sb.append(getDataDescriptorString(resDesc))
               .append(", error)");
         } else {
@@ -557,7 +550,7 @@ public class GoDocWriter extends DocWriter {
 
         //  parameters
         var parameters = function.getParameters();
-        if (parameters.size() > 0) {
+        if (!parameters.isEmpty()) {
             writer.write("<br><b>Parameters:</b><br>\n");
 
             writer.write(TABLE_TAG_NM

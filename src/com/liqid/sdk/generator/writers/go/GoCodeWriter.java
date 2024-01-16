@@ -34,7 +34,7 @@ import java.util.stream.Collectors;
  */
 public class GoCodeWriter extends CodeWriter {
 
-    private static final String GO_CODE_BASE_DIRECTORY = "../go/liqidsdk/liqidsdk";
+    private static final String GO_CODE_BASE_DIRECTORY = ARTIFACTS_DIRECTORY + "/go/liqidsdk";
     private static final String GO_LIQID_CLIENT_NAME = "LiqidClient";
 
     private static final Map<PresetId, String> PRESET_EXPRESSIONS = new HashMap<>();

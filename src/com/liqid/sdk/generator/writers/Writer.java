@@ -26,6 +26,8 @@ import java.util.stream.Collectors;
 
 public abstract class Writer {
 
+    protected static final String ARTIFACTS_DIRECTORY = "artifacts";
+
     //  The following conversions are to be implemented by the subclass writers.
     //  They convert the basename used in the configuration structs to language-correct names.
     //  DocWriters *may* include links and color.
