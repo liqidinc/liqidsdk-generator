@@ -95,7 +95,7 @@ class LiqidClient(base_client.LiqidClientBase, ABC):
             self.logger.debug('add_compute_device_to_group raising ' + str(ex))
             raise exceptions.LiqidError('add_compute_device_to_group caught ' + str(ex))
 
-    def add_compute_device_to_machine(self, device_id, group_id, machine_id) -> GroupComputeDeviceRelator:
+    def add_compute_device_to_machine(self, device_id, group_id, machine_id) -> MachineComputeDeviceRelator:
         """
         Attaches a particular device to a machine
         device_id: int 
@@ -124,7 +124,7 @@ class LiqidClient(base_client.LiqidClientBase, ABC):
             wrapper = json.loads(resp_body)
             super().check_wrapper(wrapper, False)
             data = wrapper['response']['data']
-            result = GroupComputeDeviceRelator().from_dictionary(data[0])
+            result = MachineComputeDeviceRelator().from_dictionary(data[0])
             self.logger.debug('add_compute_device_to_machine returning %s', str(result))
             return result
         except exceptions.LiqidError as ex:
@@ -170,7 +170,7 @@ class LiqidClient(base_client.LiqidClientBase, ABC):
             self.logger.debug('add_fpga_device_to_group raising ' + str(ex))
             raise exceptions.LiqidError('add_fpga_device_to_group caught ' + str(ex))
 
-    def add_fpga_device_to_machine(self, device_id, group_id, machine_id) -> GroupFPGADeviceRelator:
+    def add_fpga_device_to_machine(self, device_id, group_id, machine_id) -> MachineFPGADeviceRelator:
         """
         Attaches a particular device to a machine
         device_id: int 
@@ -199,7 +199,7 @@ class LiqidClient(base_client.LiqidClientBase, ABC):
             wrapper = json.loads(resp_body)
             super().check_wrapper(wrapper, False)
             data = wrapper['response']['data']
-            result = GroupFPGADeviceRelator().from_dictionary(data[0])
+            result = MachineFPGADeviceRelator().from_dictionary(data[0])
             self.logger.debug('add_fpga_device_to_machine returning %s', str(result))
             return result
         except exceptions.LiqidError as ex:
@@ -245,7 +245,7 @@ class LiqidClient(base_client.LiqidClientBase, ABC):
             self.logger.debug('add_gpu_device_to_group raising ' + str(ex))
             raise exceptions.LiqidError('add_gpu_device_to_group caught ' + str(ex))
 
-    def add_gpu_device_to_machine(self, device_id, group_id, machine_id) -> GroupGPUDeviceRelator:
+    def add_gpu_device_to_machine(self, device_id, group_id, machine_id) -> MachineGPUDeviceRelator:
         """
         Attaches a particular device to a machine
         device_id: int 
@@ -274,7 +274,7 @@ class LiqidClient(base_client.LiqidClientBase, ABC):
             wrapper = json.loads(resp_body)
             super().check_wrapper(wrapper, False)
             data = wrapper['response']['data']
-            result = GroupGPUDeviceRelator().from_dictionary(data[0])
+            result = MachineGPUDeviceRelator().from_dictionary(data[0])
             self.logger.debug('add_gpu_device_to_machine returning %s', str(result))
             return result
         except exceptions.LiqidError as ex:
@@ -320,7 +320,7 @@ class LiqidClient(base_client.LiqidClientBase, ABC):
             self.logger.debug('add_memory_device_to_group raising ' + str(ex))
             raise exceptions.LiqidError('add_memory_device_to_group caught ' + str(ex))
 
-    def add_memory_device_to_machine(self, device_id, group_id, machine_id) -> GroupMemoryDeviceRelator:
+    def add_memory_device_to_machine(self, device_id, group_id, machine_id) -> MachineMemoryDeviceRelator:
         """
         Attaches a particular device to a machine
         device_id: int 
@@ -349,7 +349,7 @@ class LiqidClient(base_client.LiqidClientBase, ABC):
             wrapper = json.loads(resp_body)
             super().check_wrapper(wrapper, False)
             data = wrapper['response']['data']
-            result = GroupMemoryDeviceRelator().from_dictionary(data[0])
+            result = MachineMemoryDeviceRelator().from_dictionary(data[0])
             self.logger.debug('add_memory_device_to_machine returning %s', str(result))
             return result
         except exceptions.LiqidError as ex:
@@ -395,7 +395,7 @@ class LiqidClient(base_client.LiqidClientBase, ABC):
             self.logger.debug('add_network_device_to_group raising ' + str(ex))
             raise exceptions.LiqidError('add_network_device_to_group caught ' + str(ex))
 
-    def add_network_device_to_machine(self, device_id, group_id, machine_id) -> GroupNetworkDeviceRelator:
+    def add_network_device_to_machine(self, device_id, group_id, machine_id) -> MachineNetworkDeviceRelator:
         """
         Attaches a particular device to a machine
         device_id: int 
@@ -424,7 +424,7 @@ class LiqidClient(base_client.LiqidClientBase, ABC):
             wrapper = json.loads(resp_body)
             super().check_wrapper(wrapper, False)
             data = wrapper['response']['data']
-            result = GroupNetworkDeviceRelator().from_dictionary(data[0])
+            result = MachineNetworkDeviceRelator().from_dictionary(data[0])
             self.logger.debug('add_network_device_to_machine returning %s', str(result))
             return result
         except exceptions.LiqidError as ex:
@@ -470,7 +470,7 @@ class LiqidClient(base_client.LiqidClientBase, ABC):
             self.logger.debug('add_storage_device_to_group raising ' + str(ex))
             raise exceptions.LiqidError('add_storage_device_to_group caught ' + str(ex))
 
-    def add_storage_device_to_machine(self, device_id, group_id, machine_id) -> GroupStorageDeviceRelator:
+    def add_storage_device_to_machine(self, device_id, group_id, machine_id) -> MachineStorageDeviceRelator:
         """
         Attaches a particular device to a machine
         device_id: int 
@@ -499,7 +499,7 @@ class LiqidClient(base_client.LiqidClientBase, ABC):
             wrapper = json.loads(resp_body)
             super().check_wrapper(wrapper, False)
             data = wrapper['response']['data']
-            result = GroupStorageDeviceRelator().from_dictionary(data[0])
+            result = MachineStorageDeviceRelator().from_dictionary(data[0])
             self.logger.debug('add_storage_device_to_machine returning %s', str(result))
             return result
         except exceptions.LiqidError as ex:

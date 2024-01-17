@@ -24,7 +24,7 @@ import (
 // Param groupId: Unique identifier for the group to which the machine belongs
 // Param machineId: Unique identifier for the machine to which the device is to be added
 // Returns: A description of the relation being created
-func (client *LiqidClient) AddComputeDeviceToMachine(deviceId int32, groupId int32, machineId int32) (*GroupComputeDeviceRelator, error) {
+func (client *LiqidClient) AddComputeDeviceToMachine(deviceId int32, groupId int32, machineId int32) (*MachineComputeDeviceRelator, error) {
 	var fn = "AddComputeDeviceToMachine"
 	client.traceLogger.Printf(LogFmtEnter3, fn, deviceId, groupId, machineId)
 	var composite = MachineComputeDeviceRelator{}
@@ -52,7 +52,7 @@ func (client *LiqidClient) AddComputeDeviceToMachine(deviceId int32, groupId int
 		return nil, cliErr
 	}
 
-	var respWrapper GroupComputeDeviceRelatorWrapper
+	var respWrapper MachineComputeDeviceRelatorWrapper
 	jsonErr := cliReq.GetJSONResponse(&respWrapper)
 	if jsonErr != nil {
 		client.traceLogger.Printf(LogFmtReturn2, fn, nil, jsonErr)
@@ -82,7 +82,7 @@ func (client *LiqidClient) AddComputeDeviceToMachine(deviceId int32, groupId int
 // Param groupId: Unique identifier for the group to which the machine belongs
 // Param machineId: Unique identifier for the machine to which the device is to be added
 // Returns: A description of the relation being created
-func (client *LiqidClient) AddFPGADeviceToMachine(deviceId int32, groupId int32, machineId int32) (*GroupFPGADeviceRelator, error) {
+func (client *LiqidClient) AddFPGADeviceToMachine(deviceId int32, groupId int32, machineId int32) (*MachineFPGADeviceRelator, error) {
 	var fn = "AddFPGADeviceToMachine"
 	client.traceLogger.Printf(LogFmtEnter3, fn, deviceId, groupId, machineId)
 	var composite = MachineFPGADeviceRelator{}
@@ -110,7 +110,7 @@ func (client *LiqidClient) AddFPGADeviceToMachine(deviceId int32, groupId int32,
 		return nil, cliErr
 	}
 
-	var respWrapper GroupFPGADeviceRelatorWrapper
+	var respWrapper MachineFPGADeviceRelatorWrapper
 	jsonErr := cliReq.GetJSONResponse(&respWrapper)
 	if jsonErr != nil {
 		client.traceLogger.Printf(LogFmtReturn2, fn, nil, jsonErr)
@@ -140,7 +140,7 @@ func (client *LiqidClient) AddFPGADeviceToMachine(deviceId int32, groupId int32,
 // Param groupId: Unique identifier for the group to which the machine belongs
 // Param machineId: Unique identifier for the machine to which the device is to be added
 // Returns: A description of the relation being created
-func (client *LiqidClient) AddGPUDeviceToMachine(deviceId int32, groupId int32, machineId int32) (*GroupGPUDeviceRelator, error) {
+func (client *LiqidClient) AddGPUDeviceToMachine(deviceId int32, groupId int32, machineId int32) (*MachineGPUDeviceRelator, error) {
 	var fn = "AddGPUDeviceToMachine"
 	client.traceLogger.Printf(LogFmtEnter3, fn, deviceId, groupId, machineId)
 	var composite = MachineGPUDeviceRelator{}
@@ -168,7 +168,7 @@ func (client *LiqidClient) AddGPUDeviceToMachine(deviceId int32, groupId int32, 
 		return nil, cliErr
 	}
 
-	var respWrapper GroupGPUDeviceRelatorWrapper
+	var respWrapper MachineGPUDeviceRelatorWrapper
 	jsonErr := cliReq.GetJSONResponse(&respWrapper)
 	if jsonErr != nil {
 		client.traceLogger.Printf(LogFmtReturn2, fn, nil, jsonErr)
@@ -198,7 +198,7 @@ func (client *LiqidClient) AddGPUDeviceToMachine(deviceId int32, groupId int32, 
 // Param groupId: Unique identifier for the group to which the machine belongs
 // Param machineId: Unique identifier for the machine to which the device is to be added
 // Returns: A description of the relation being created
-func (client *LiqidClient) AddMemoryDeviceToMachine(deviceId int32, groupId int32, machineId int32) (*GroupMemoryDeviceRelator, error) {
+func (client *LiqidClient) AddMemoryDeviceToMachine(deviceId int32, groupId int32, machineId int32) (*MachineMemoryDeviceRelator, error) {
 	var fn = "AddMemoryDeviceToMachine"
 	client.traceLogger.Printf(LogFmtEnter3, fn, deviceId, groupId, machineId)
 	var composite = MachineMemoryDeviceRelator{}
@@ -226,7 +226,7 @@ func (client *LiqidClient) AddMemoryDeviceToMachine(deviceId int32, groupId int3
 		return nil, cliErr
 	}
 
-	var respWrapper GroupMemoryDeviceRelatorWrapper
+	var respWrapper MachineMemoryDeviceRelatorWrapper
 	jsonErr := cliReq.GetJSONResponse(&respWrapper)
 	if jsonErr != nil {
 		client.traceLogger.Printf(LogFmtReturn2, fn, nil, jsonErr)
@@ -256,7 +256,7 @@ func (client *LiqidClient) AddMemoryDeviceToMachine(deviceId int32, groupId int3
 // Param groupId: Unique identifier for the group to which the machine belongs
 // Param machineId: Unique identifier for the machine to which the device is to be added
 // Returns: A description of the relation being created
-func (client *LiqidClient) AddNetworkDeviceToMachine(deviceId int32, groupId int32, machineId int32) (*GroupNetworkDeviceRelator, error) {
+func (client *LiqidClient) AddNetworkDeviceToMachine(deviceId int32, groupId int32, machineId int32) (*MachineNetworkDeviceRelator, error) {
 	var fn = "AddNetworkDeviceToMachine"
 	client.traceLogger.Printf(LogFmtEnter3, fn, deviceId, groupId, machineId)
 	var composite = MachineNetworkDeviceRelator{}
@@ -284,7 +284,7 @@ func (client *LiqidClient) AddNetworkDeviceToMachine(deviceId int32, groupId int
 		return nil, cliErr
 	}
 
-	var respWrapper GroupNetworkDeviceRelatorWrapper
+	var respWrapper MachineNetworkDeviceRelatorWrapper
 	jsonErr := cliReq.GetJSONResponse(&respWrapper)
 	if jsonErr != nil {
 		client.traceLogger.Printf(LogFmtReturn2, fn, nil, jsonErr)
@@ -314,7 +314,7 @@ func (client *LiqidClient) AddNetworkDeviceToMachine(deviceId int32, groupId int
 // Param groupId: Unique identifier for the group to which the machine belongs
 // Param machineId: Unique identifier for the machine to which the device is to be added
 // Returns: A description of the relation being created
-func (client *LiqidClient) AddStorageDeviceToMachine(deviceId int32, groupId int32, machineId int32) (*GroupStorageDeviceRelator, error) {
+func (client *LiqidClient) AddStorageDeviceToMachine(deviceId int32, groupId int32, machineId int32) (*MachineStorageDeviceRelator, error) {
 	var fn = "AddStorageDeviceToMachine"
 	client.traceLogger.Printf(LogFmtEnter3, fn, deviceId, groupId, machineId)
 	var composite = MachineStorageDeviceRelator{}
@@ -342,7 +342,7 @@ func (client *LiqidClient) AddStorageDeviceToMachine(deviceId int32, groupId int
 		return nil, cliErr
 	}
 
-	var respWrapper GroupStorageDeviceRelatorWrapper
+	var respWrapper MachineStorageDeviceRelatorWrapper
 	jsonErr := cliReq.GetJSONResponse(&respWrapper)
 	if jsonErr != nil {
 		client.traceLogger.Printf(LogFmtReturn2, fn, nil, jsonErr)

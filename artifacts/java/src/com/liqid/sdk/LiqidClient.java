@@ -77,9 +77,9 @@ public class LiqidClient extends LiqidClientBase {
      * @return A description of the relation being created
      * @throws LiqidException if anything goes wrong
      */
-    public GroupComputeDeviceRelator addComputeDeviceToMachine(Integer deviceId,
-                                                               Integer groupId,
-                                                               Integer machineId) throws LiqidException {
+    public MachineComputeDeviceRelator addComputeDeviceToMachine(Integer deviceId,
+                                                                 Integer groupId,
+                                                                 Integer machineId) throws LiqidException {
         var fn = "addComputeDeviceToMachine";
         _logger.trace("Entering %s deviceId:%s groupId:%s machineId:%s", fn, deviceId, groupId, machineId);
         checkParameterNotNull(deviceId, "deviceId", fn);
@@ -95,7 +95,7 @@ public class LiqidClient extends LiqidClientBase {
             var mapper = new ObjectMapper();
             mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.NONE);
             mapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
-            var wrapper = mapper.readValue((String) httpResponse.body(), GroupComputeDeviceRelator.GroupComputeDeviceRelatorWrapper.class);
+            var wrapper = mapper.readValue((String) httpResponse.body(), MachineComputeDeviceRelator.MachineComputeDeviceRelatorWrapper.class);
             wrapper.check();
             var result = wrapper.getResponse().getData().getFirst();
 
@@ -160,9 +160,9 @@ public class LiqidClient extends LiqidClientBase {
      * @return A description of the relation being created
      * @throws LiqidException if anything goes wrong
      */
-    public GroupFPGADeviceRelator addFPGADeviceToMachine(Integer deviceId,
-                                                         Integer groupId,
-                                                         Integer machineId) throws LiqidException {
+    public MachineFPGADeviceRelator addFPGADeviceToMachine(Integer deviceId,
+                                                           Integer groupId,
+                                                           Integer machineId) throws LiqidException {
         var fn = "addFPGADeviceToMachine";
         _logger.trace("Entering %s deviceId:%s groupId:%s machineId:%s", fn, deviceId, groupId, machineId);
         checkParameterNotNull(deviceId, "deviceId", fn);
@@ -178,7 +178,7 @@ public class LiqidClient extends LiqidClientBase {
             var mapper = new ObjectMapper();
             mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.NONE);
             mapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
-            var wrapper = mapper.readValue((String) httpResponse.body(), GroupFPGADeviceRelator.GroupFPGADeviceRelatorWrapper.class);
+            var wrapper = mapper.readValue((String) httpResponse.body(), MachineFPGADeviceRelator.MachineFPGADeviceRelatorWrapper.class);
             wrapper.check();
             var result = wrapper.getResponse().getData().getFirst();
 
@@ -243,9 +243,9 @@ public class LiqidClient extends LiqidClientBase {
      * @return A description of the relation being created
      * @throws LiqidException if anything goes wrong
      */
-    public GroupGPUDeviceRelator addGPUDeviceToMachine(Integer deviceId,
-                                                       Integer groupId,
-                                                       Integer machineId) throws LiqidException {
+    public MachineGPUDeviceRelator addGPUDeviceToMachine(Integer deviceId,
+                                                         Integer groupId,
+                                                         Integer machineId) throws LiqidException {
         var fn = "addGPUDeviceToMachine";
         _logger.trace("Entering %s deviceId:%s groupId:%s machineId:%s", fn, deviceId, groupId, machineId);
         checkParameterNotNull(deviceId, "deviceId", fn);
@@ -261,7 +261,7 @@ public class LiqidClient extends LiqidClientBase {
             var mapper = new ObjectMapper();
             mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.NONE);
             mapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
-            var wrapper = mapper.readValue((String) httpResponse.body(), GroupGPUDeviceRelator.GroupGPUDeviceRelatorWrapper.class);
+            var wrapper = mapper.readValue((String) httpResponse.body(), MachineGPUDeviceRelator.MachineGPUDeviceRelatorWrapper.class);
             wrapper.check();
             var result = wrapper.getResponse().getData().getFirst();
 
@@ -326,9 +326,9 @@ public class LiqidClient extends LiqidClientBase {
      * @return A description of the relation being created
      * @throws LiqidException if anything goes wrong
      */
-    public GroupMemoryDeviceRelator addMemoryDeviceToMachine(Integer deviceId,
-                                                             Integer groupId,
-                                                             Integer machineId) throws LiqidException {
+    public MachineMemoryDeviceRelator addMemoryDeviceToMachine(Integer deviceId,
+                                                               Integer groupId,
+                                                               Integer machineId) throws LiqidException {
         var fn = "addMemoryDeviceToMachine";
         _logger.trace("Entering %s deviceId:%s groupId:%s machineId:%s", fn, deviceId, groupId, machineId);
         checkParameterNotNull(deviceId, "deviceId", fn);
@@ -344,7 +344,7 @@ public class LiqidClient extends LiqidClientBase {
             var mapper = new ObjectMapper();
             mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.NONE);
             mapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
-            var wrapper = mapper.readValue((String) httpResponse.body(), GroupMemoryDeviceRelator.GroupMemoryDeviceRelatorWrapper.class);
+            var wrapper = mapper.readValue((String) httpResponse.body(), MachineMemoryDeviceRelator.MachineMemoryDeviceRelatorWrapper.class);
             wrapper.check();
             var result = wrapper.getResponse().getData().getFirst();
 
@@ -409,9 +409,9 @@ public class LiqidClient extends LiqidClientBase {
      * @return A description of the relation being created
      * @throws LiqidException if anything goes wrong
      */
-    public GroupNetworkDeviceRelator addNetworkDeviceToMachine(Integer deviceId,
-                                                               Integer groupId,
-                                                               Integer machineId) throws LiqidException {
+    public MachineNetworkDeviceRelator addNetworkDeviceToMachine(Integer deviceId,
+                                                                 Integer groupId,
+                                                                 Integer machineId) throws LiqidException {
         var fn = "addNetworkDeviceToMachine";
         _logger.trace("Entering %s deviceId:%s groupId:%s machineId:%s", fn, deviceId, groupId, machineId);
         checkParameterNotNull(deviceId, "deviceId", fn);
@@ -427,7 +427,7 @@ public class LiqidClient extends LiqidClientBase {
             var mapper = new ObjectMapper();
             mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.NONE);
             mapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
-            var wrapper = mapper.readValue((String) httpResponse.body(), GroupNetworkDeviceRelator.GroupNetworkDeviceRelatorWrapper.class);
+            var wrapper = mapper.readValue((String) httpResponse.body(), MachineNetworkDeviceRelator.MachineNetworkDeviceRelatorWrapper.class);
             wrapper.check();
             var result = wrapper.getResponse().getData().getFirst();
 
@@ -492,9 +492,9 @@ public class LiqidClient extends LiqidClientBase {
      * @return A description of the relation being created
      * @throws LiqidException if anything goes wrong
      */
-    public GroupStorageDeviceRelator addStorageDeviceToMachine(Integer deviceId,
-                                                               Integer groupId,
-                                                               Integer machineId) throws LiqidException {
+    public MachineStorageDeviceRelator addStorageDeviceToMachine(Integer deviceId,
+                                                                 Integer groupId,
+                                                                 Integer machineId) throws LiqidException {
         var fn = "addStorageDeviceToMachine";
         _logger.trace("Entering %s deviceId:%s groupId:%s machineId:%s", fn, deviceId, groupId, machineId);
         checkParameterNotNull(deviceId, "deviceId", fn);
@@ -510,7 +510,7 @@ public class LiqidClient extends LiqidClientBase {
             var mapper = new ObjectMapper();
             mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.NONE);
             mapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
-            var wrapper = mapper.readValue((String) httpResponse.body(), GroupStorageDeviceRelator.GroupStorageDeviceRelatorWrapper.class);
+            var wrapper = mapper.readValue((String) httpResponse.body(), MachineStorageDeviceRelator.MachineStorageDeviceRelatorWrapper.class);
             wrapper.check();
             var result = wrapper.getResponse().getData().getFirst();
 
