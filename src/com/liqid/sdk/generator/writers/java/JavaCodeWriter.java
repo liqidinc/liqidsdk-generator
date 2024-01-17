@@ -637,7 +637,7 @@ public class JavaCodeWriter extends CodeWriter {
         for (var param : function.getParameters()) {
             if (!param.isOptional()) {
                 var paramName = convertParameterName(param.getBaseName());
-                writer.write(String.format("        checkParameterNotNull(%s, \"%s\", \"%s\");\n", paramName, paramName, funcName));
+                writer.write(String.format("        checkParameterNotNull(%s, \"%s\", fn);\n", paramName, paramName));
             }
         }
     }
