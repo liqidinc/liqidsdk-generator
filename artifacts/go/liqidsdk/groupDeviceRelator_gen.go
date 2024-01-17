@@ -360,7 +360,7 @@ func (client *LiqidClient) AddStorageDeviceToGroup(deviceId int32, groupId int32
 	return result, nil
 }
 
-// GetDevices Returns information regarding devices which are attached to a particular group.
+// GetPreDevices Returns information regarding devices which are attached to a particular group.
 //
 // Param queryDeviceType: Limits the device type of the devices to be queried.
 //                        If not specified, all device types will be returned.
@@ -369,8 +369,8 @@ func (client *LiqidClient) AddStorageDeviceToGroup(deviceId int32, groupId int32
 //                group free pool will be returned.
 // Param machineId: Only return devices associated with the indicated machine.
 // Returns: An array of PreDevice entities describing the various devices in the configuration
-func (client *LiqidClient) GetDevices(queryDeviceType *DeviceQueryType, groupId int32, machineId *int32) ([]PreDevice, error) {
-	var fn = "GetDevices"
+func (client *LiqidClient) GetPreDevices(queryDeviceType *DeviceQueryType, groupId int32, machineId *int32) ([]PreDevice, error) {
+	var fn = "GetPreDevices"
 	client.traceLogger.Printf(LogFmtEnter3, fn, queryDeviceType, groupId, machineId)
 
 	path := "predevice"

@@ -1188,7 +1188,7 @@ class LiqidClient(base_client.LiqidClientBase, ABC):
             self.logger.debug('get_default_coordinates raising ' + str(ex))
             raise exceptions.LiqidError('get_default_coordinates caught ' + str(ex))
 
-    def get_devices(self, query_device_type, group_id, machine_id) -> list:
+    def get_pre_devices(self, query_device_type, group_id, machine_id) -> list:
         """
         Returns information regarding devices which are attached to a particular group.
         query_device_type: str  (optional - can be None)
@@ -1201,7 +1201,7 @@ class LiqidClient(base_client.LiqidClientBase, ABC):
         machine_id: int  (optional - can be None)
             Only return devices associated with the indicated machine.
         """
-        self.logger.debug('entering get_devices(%s, %s, %s)', str(query_device_type), str(group_id), str(machine_id))
+        self.logger.debug('entering get_pre_devices(%s, %s, %s)', str(query_device_type), str(group_id), str(machine_id))
         self.check_parameter_type('query_device_type', query_device_type, 'str', True)
         self.check_parameter_type('group_id', group_id, 'int', False)
         self.check_parameter_type('machine_id', machine_id, 'int', True)
@@ -1224,14 +1224,14 @@ class LiqidClient(base_client.LiqidClientBase, ABC):
             for item in data:
                 if item is not None:
                     result.append(PreDevice().from_dictionary(item))
-            self.logger.debug('get_devices returning %s', self._list_str(result))
+            self.logger.debug('get_pre_devices returning %s', self._list_str(result))
             return result
         except exceptions.LiqidError as ex:
-            self.logger.debug('get_devices raising ' + str(ex))
+            self.logger.debug('get_pre_devices raising ' + str(ex))
             raise ex
         except Exception as ex:
-            self.logger.debug('get_devices raising ' + str(ex))
-            raise exceptions.LiqidError('get_devices caught ' + str(ex))
+            self.logger.debug('get_pre_devices raising ' + str(ex))
+            raise exceptions.LiqidError('get_pre_devices caught ' + str(ex))
 
     def get_device_attributes(self) -> list:
         """

@@ -1361,7 +1361,7 @@ public class LiqidClient extends LiqidClientBase {
     }
 
     /**
-     * getDevices()
+     * getPreDevices()
      * Category: GroupDeviceRelator
      * Returns information regarding devices which are attached to a particular group.
      * @param queryDeviceType: Limits the device type of the devices to be queried.
@@ -1375,12 +1375,12 @@ public class LiqidClient extends LiqidClientBase {
      * @return An array of PreDevice entities describing the various devices in the configuration
      * @throws LiqidException if anything goes wrong
      */
-    public LinkedList<PreDevice> getDevices(DeviceQueryType queryDeviceType,
-                                            Integer groupId,
-                                            Integer machineId) throws LiqidException {
-        var fn = "getDevices";
+    public LinkedList<PreDevice> getPreDevices(DeviceQueryType queryDeviceType,
+                                               Integer groupId,
+                                               Integer machineId) throws LiqidException {
+        var fn = "getPreDevices";
         _logger.trace("Entering %s queryDeviceType:%s groupId:%s machineId:%s", fn, queryDeviceType, groupId, machineId);
-        checkParameterNotNull(groupId, "groupId", "getDevices");
+        checkParameterNotNull(groupId, "groupId", "getPreDevices");
 
         try {
             var path = "predevice";

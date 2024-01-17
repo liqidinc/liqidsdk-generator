@@ -1249,7 +1249,7 @@ class Functions {
     private static final Function GetPreDevices =
         new RegularFunction.Builder()
             .setFunctionId(FunctionId.GET_PRE_DEVICES)
-            .setBaseName("GetDevices")
+            .setBaseName("GetPreDevices")
             .setRestMethod(HttpMethod.GET)
             .setPartialPath("predevice")
             .setResultDataDescriptor(new StructDataDescriptor(StructId.PRE_DEVICE, true))
