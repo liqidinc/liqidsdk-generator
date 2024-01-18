@@ -530,7 +530,7 @@ public class JavaDocWriter extends DocWriter {
 
     private void writeStructMembers(BufferedWriter writer, Struct struct) throws IOException {
         var members = struct.getDataMembersFor(LanguageId.JAVA);
-        if (members.size() > 0) {
+        if (!members.isEmpty()) {
             writer.write("<h3>Members:</h3>\n");
             writer.write(embedInSpan("All members are private, and should be accessed via the indicated get and set methods.<br>\n",
                                      LEFT_MARGIN_EM, null, null));
@@ -552,7 +552,8 @@ public class JavaDocWriter extends DocWriter {
                         + " "
                         + embedInSpan(JavaCommon.toGetterName(m.getBaseName()), null, null, FUNCTION_NAME_COLOR)
                         + "()";
-                    var setter = "void "
+                    var setter = embedInSpan(JavaCommon.toClassName(struct.getBaseName()), null, null, CLASS_NAME_COLOR)
+                        + " "
                         + embedInSpan(JavaCommon.toSetterName(m.getBaseName()), null, null, FUNCTION_NAME_COLOR)
                         + "("
                         + getDataDescriptorString(m.getDataDescriptor())

@@ -869,7 +869,7 @@ public class JavaCodeWriter extends CodeWriter {
                   .sorted((a, b) -> a.getBaseName().compareToIgnoreCase(b.getBaseName()))
                   .toList();
         for (var m : sorted) {
-            writeStructMember(w, m);
+            writeStructMember(w, m, className);
         }
 
         var aggregateMembers = struct.getAggregateDataMembersFor(LanguageId.JAVA);
@@ -1063,7 +1063,8 @@ public class JavaCodeWriter extends CodeWriter {
 
     private void writeStructDataMember(
         final BufferedWriter writer,
-        final StructDataMember member
+        final StructDataMember member,
+        final String className
     ) throws IOException {
         writer.write("\n");
         writer.write("    /**\n");
@@ -1089,6 +1090,7 @@ public class JavaCodeWriter extends CodeWriter {
             sdkTypeString = String.format("LinkedList<%s>", sdkTypeString);
         }
 
+        // write getter
         writer.write("\n");
         writer.write(String.format("    public %s %s() {\n", sdkTypeString, getterName));
         if (dataDesc.getDataTypeId() == DataTypeId.INTRINSIC) {
@@ -1120,8 +1122,9 @@ public class JavaCodeWriter extends CodeWriter {
         }
         writer.write("    }\n");
 
+        // write setter
         writer.write("\n");
-        writer.write(String.format("    public void %s(%s value) {\n", setterName, sdkTypeString));
+        writer.write(String.format("    public %s %s(%s value) {\n", className, setterName, sdkTypeString));
         if (dataDesc.getDataTypeId() == DataTypeId.INTRINSIC) {
             var idd = (IntrinsicDataDescriptor) dataDesc;
             for (var t : idd.getTranslations()) {
@@ -1147,58 +1150,8 @@ public class JavaCodeWriter extends CodeWriter {
         } else {
             writer.write(String.format("        %s = value;\n", name));
         }
+        writer.write("        return this;\n");
         writer.write("    }\n");
-
-//        var done = false;
-//        if (dataDesc.getDataTypeId() == DataTypeId.INTRINSIC) {
-//            var idd = (IntrinsicDataDescriptor) dataDesc;
-//            if (idd.getIntrinsicTypeId() == IntrinsicTypeId.INT16_AS_STRING) {
-//                writer.write(String.format("    public Integer %s() { return LiqidClientBase.hexStringToInteger(%s); }\n",
-//                                           getterName,
-//                                           name));
-//                writer.write(String.format("    public void %s(Integer value) { %s = String.format(\"0x%%04x\", value); }\n",
-//                                           setterName,
-//                                           name));
-//                done = true;
-//            } else if (idd.getIntrinsicTypeId() == IntrinsicTypeId.INT24_AS_STRING) {
-//                writer.write(String.format("    public Integer %s() { return LiqidClientBase.hexStringToInteger(%s); }\n",
-//                                           getterName,
-//                                           name));
-//                writer.write(String.format("    public void %s(Integer value) { %s = String.format(\"0x%%06x\", value); }\n",
-//                                           setterName,
-//                                           name));
-//                done = true;
-//            } else if (idd.getIntrinsicTypeId() == IntrinsicTypeId.INT32_AS_STRING) {
-//                writer.write(String.format("    public Integer %s() { return LiqidClientBase.hexStringToInteger(%s); }\n",
-//                                           getterName,
-//                                           name));
-//                writer.write(String.format("    public void %s(Integer value) { %s = String.format(\"0x%%08x\", value); }\n",
-//                                           setterName,
-//                                           name));
-//                done = true;
-//            } else if (idd.getIntrinsicTypeId() == IntrinsicTypeId.INT64_AS_STRING) {
-//                writer.write(String.format("    public Long %s() { return LiqidClientBase.hexStringToLong(%s); }\n",
-//                                           getterName,
-//                                           name));
-//                writer.write(String.format("    public void %s(Long value) { %s = String.format(\"0x%%016x\", value); }\n",
-//                                           setterName,
-//                                           name));
-//                done = true;
-//            } else if (idd.getIntrinsicTypeId() == IntrinsicTypeId.INT32_AS_DECIMAL_STRING) {
-//                writer.write(String.format("    public Integer %s() { return Integer.parseInt(%s); }\n",
-//                                           getterName,
-//                                           name));
-//                writer.write(String.format("    public void %s(Integer value) { %s = String.format(\"%%d\", value); }\n",
-//                                           setterName,
-//                                           name));
-//                done = true;
-//            }
-//        }
-//
-//        if (!done) {
-//            writer.write(String.format("    public %s %s() { return %s; }\n", type, getterName, name));
-//            writer.write(String.format("    public void %s(%s value) { %s = value; }\n", setterName, type, name));
-//        }
     }
 
     //  writes the imports for POJO classes and enumerators
@@ -1221,10 +1174,11 @@ public class JavaCodeWriter extends CodeWriter {
 
     private void writeStructMember(
         final BufferedWriter writer,
-        final StructMember member
+        final StructMember member,
+        final String className
     ) throws IOException {
         if (member instanceof StructDataMember sdm) {
-            writeStructDataMember(writer, sdm);
+            writeStructDataMember(writer, sdm, className);
         } else if (member instanceof StructFunctionMember sfm) {
             writeFunction(writer, Catalog.getFunction(sfm.getFunctionId()));
         }
