@@ -91,7 +91,7 @@ public class Machine {
     public Machine setFabricGlobalId(Integer value) {
         if (value.equals(0)) {
             _fabricGlobalId = "n/a";
-            return;
+            return this;
         }
         _fabricGlobalId = String.format("0x%08x", value);
         return this;

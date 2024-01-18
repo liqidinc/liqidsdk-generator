@@ -149,7 +149,7 @@ public class PreDevice {
     public PreDevice setMachineId(Integer value) {
         if (value.equals(0)) {
             _machineId = "n/a";
-            return;
+            return this;
         }
         _machineId = String.format("%d", value);
         return this;

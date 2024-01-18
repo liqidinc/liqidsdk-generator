@@ -191,7 +191,7 @@ public class JavaCodeWriter extends CodeWriter {
         writeFunctionHeader(writer, function, funcName);
         writeFunctionSignature(writer, function, funcName);
         writeFunctionLogEntryTrace(writer, function, funcName);
-        writeFunctionNullCheck(writer, function, funcName);
+        writeFunctionNullCheck(writer, function);
 
         writer.write("        try {\n");
         writeCompositeStructFunctionGetters(writer, function, compositeObjectName);
@@ -265,7 +265,7 @@ public class JavaCodeWriter extends CodeWriter {
         writeFunctionHeader(writer, function, funcName);
         writeFunctionSignature(writer, function, funcName);
         writeFunctionLogEntryTrace(writer, function, funcName);
-        writeFunctionNullCheck(writer, function, funcName);
+        writeFunctionNullCheck(writer, function);
 
         //  Parameters will include (first) the identifier(s) we're looking for,
         //  followed by zero or more parameters which are simply passed to the base getter.
@@ -316,7 +316,7 @@ public class JavaCodeWriter extends CodeWriter {
         writeFunctionHeader(writer, function, funcName);
         writeFunctionSignature(writer, function, funcName);
         writeFunctionLogEntryTrace(writer, function, funcName);
-        writeFunctionNullCheck(writer, function, funcName);
+        writeFunctionNullCheck(writer, function);
         var translatedParams = writeParameterTranslations(writer, function.getParameters());
 
         writer.write("\n");
@@ -343,7 +343,7 @@ public class JavaCodeWriter extends CodeWriter {
         writeFunctionHeader(writer, function, funcName);
         writeFunctionSignature(writer, function, funcName);
         writeFunctionLogEntryTrace(writer, function, funcName);
-        writeFunctionNullCheck(writer, function, funcName);
+        writeFunctionNullCheck(writer, function);
 
         writer.write("        try {\n");
         writeGetPostPutFunctionGetter(writer, function);
@@ -403,7 +403,7 @@ public class JavaCodeWriter extends CodeWriter {
         writeFunctionHeader(writer, function, funcName);
         writeFunctionSignature(writer, function, funcName);
         writeFunctionLogEntryTrace(writer, function, funcName);
-        writeFunctionNullCheck(writer, function, funcName);
+        writeFunctionNullCheck(writer, function);
         var translatedParams = writeParameterTranslations(writer, function.getParameters());
 
         writer.write("\n");
@@ -631,8 +631,7 @@ public class JavaCodeWriter extends CodeWriter {
 
     private void writeFunctionNullCheck(
         final BufferedWriter writer,
-        final Function function,
-        final String funcName
+        final Function function
     ) throws IOException {
         for (var param : function.getParameters()) {
             if (!param.isOptional()) {
@@ -660,7 +659,7 @@ public class JavaCodeWriter extends CodeWriter {
         writer.write(String.format("            var path = \"%s\";\n", pathComponents._partialPath));
 
         //  Path presets come first.
-        if (pathComponents._pathPresets.size() > 0) {
+        if (!pathComponents._pathPresets.isEmpty()) {
             writer.write("            path += ");
             for (var presetId : pathComponents._pathPresets) {
                 writer.write(String.format("%s + %s", SLASH_LITERAL, PRESET_EXPRESSIONS.get(presetId)));
@@ -669,7 +668,7 @@ public class JavaCodeWriter extends CodeWriter {
         }
 
         //  Now do path parameters
-        if (pathComponents._pathParameters.size() > 0) {
+        if (!pathComponents._pathParameters.isEmpty()) {
             for (var param : pathComponents._pathParameters) {
                 var name = convertParameterName(param.getBaseName());
                 name = translatedParams.getOrDefault(name, name);
@@ -1130,7 +1129,7 @@ public class JavaCodeWriter extends CodeWriter {
             for (var t : idd.getTranslations()) {
                 writer.write(String.format("        if (value.equals(%s)) {\n", t._sdkConstant));
                 writer.write(String.format("            %s = %s;\n", name, t._apiConstant));
-                writer.write("            return;\n");
+                writer.write("            return this;\n");
                 writer.write("        }\n");
             }
 
